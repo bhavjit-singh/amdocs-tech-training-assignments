@@ -1,0 +1,53 @@
+
+(1) create a function as " total_stock_available" to return the total stock quantity for a particular supplier name
+
+DELIMITER $$
+CREATE FUNCTION total_stock_available(sup_name VARCHAR(100))
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE totalStock INT;
+    SELECT SUM(p.stock_quantity) INTO totalStock
+    FROM products p, suppliers s
+    WHERE p.supplier_id = s.supplier_id AND s.supplier_name = sup_name;
+    RETURN totalStock;
+END$$
+DELIMITER ;
+
+(2) create a function as to return the product name for a supplier email as "sales@globalgoods.com" and category id as "1"
+
+DELIMITER $$
+CREATE FUNCTION get_product(sup_email VARCHAR(100), catID INT)
+RETURNS VARCHAR(100)
+DETERMINISTIC
+BEGIN
+    DECLARE resultName VARCHAR(100);
+    SELECT p.product_name INTO resultName
+    FROM products p, suppliers s, categories c
+    WHERE p.supplier_id = s.supplier_id 
+AND p.category_id = c.category_id 
+AND s.contact_email = sup_email 
+AND c.category_id = catID;
+    RETURN resultName;
+END$$
+DELIMITER ;
+
+(3) create a procedure to return all the products
+
+DELIMITER $$
+CREATE PROCEDURE all_products()
+BEGIN
+    SELECT * FROM products;
+END$$
+DELIMITER ;
+
+(4) create a procedure to return total stock quantity for a particular category id passed as input
+ 
+DELIMITER $$
+CREATE PROCEDURE total_stock_per_category(IN catId INT)
+BEGIN
+    SELECT SUM(p.stock_quantity)
+    FROM products p
+    WHERE category_id = catId;
+END$$
+DELIMITER ;

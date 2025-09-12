@@ -1,0 +1,42 @@
+1) create two files - student.txt and employee.txt and add them to staging are
+
+2) add one more file - dept.txt into staging area but at same time restore the employee.txt and modify some changes inside the student.txt 
+
+3) push dept.txt, student.txt and employee.txt to the remote repos
+
+4) create a new file - hello.txt in remote repos directly and bring to the working directory
+
+5) send all files from working directory to remote repos
+
+6) remove a file from the remote repos and sync the changes into your working directory
+
+
+
+Solution :
+
+# create student.txt and employee.txt
+
+git add student.txt employee.txt
+git commit -m "Added student and employee files"
+
+# create dept.txt and modify student.txt, unstage employee.txt
+
+git add dept.txt
+git reset HEAD employee.txt
+
+# modify student.txt with changes
+
+git add student.txt dept.txt
+git commit -m "Added dept file and updated student file"
+git push origin main
+
+# create hello.txt directly in remote repo (via GitHub/GitLab UI)
+
+git pull origin main
+git add .
+git commit -m "Sync local with remote"
+git push origin main
+
+# remove file from remote repo (via GitHub/GitLab UI)
+
+git pull origin main

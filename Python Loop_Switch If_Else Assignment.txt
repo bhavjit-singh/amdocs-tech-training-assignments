@@ -1,0 +1,79 @@
+# 1. Write a program that prints all even numbers from 10 to 20 (inclusive) using the range() function without using any loop.
+print(*range(10, 21, 2))
+
+# 2. Write a program that keeps asking the user to enter a positive number. Stop only when the user enters 0. Ensure the user is asked at least once (simulate do-while).
+while True:
+    num = int(input("Enter a positive number (0 to stop): "))
+    if num == 0:
+        break
+
+# 3. Write a program using a while loop to calculate the factorial of a number entered by the user.
+n = int(input("Enter a number: "))
+fact = 1
+i = 1
+while i <= n:
+    fact *= i
+    i += 1
+print("Factorial:", fact)
+
+# 4. Write a program to assign a grade based on the score:
+score = int(input("Enter score: "))
+if score > 90:
+    grade = "A"
+else:
+    if score > 80:
+        grade = "B"
+    else:
+        if score > 70:
+            grade = "C"
+        else:
+            if score > 60:
+                grade = "D"
+            else:
+                grade = "F"
+print("Grade:", grade)
+
+# 5. Write a program that asks the user to enter a number from 1 to 7 and prints the day of the week using match-case:
+day_num = int(input("Enter a number (1-7): "))
+match day_num:
+    case 1:
+        print("Monday")
+    case 2:
+        print("Tuesday")
+    case 3:
+        print("Wednesday")
+    case 4:
+        print("Thursday")
+    case 5:
+        print("Friday")
+    case 6:
+        print("Saturday")
+    case 7:
+        print("Sunday")
+    case _:
+        print("Invalid input")
+
+# 6. Write a Python program that manages a list of student scores.
+scores = []
+scores.append(85)
+scores.append(90)
+scores.append(78)
+scores.append(92)
+scores.append(88)
+scores.insert(2, 80)
+scores.remove(92)
+scores.sort()
+scores.reverse()
+print("Scores:", scores)
+print("Max:", max(scores))
+print("Min:", min(scores))
+print("Is 90 in list:", 90 in scores)
+print("Total number of scores:", len(scores))
+print("First three scores:", scores[:3])
+for s in scores:
+    print(s)
+print("Last element:", scores[-1])
+scores[2] = 95
+print("After replacing index 2:", scores)
+copied_list = scores.copy()
+print("Copied list:", copied_list)

@@ -1,0 +1,74 @@
+/*
+create the 4 student objects with name s1,s2,s3,s4
+Declare the class "Student" and create member variables as below:
+   - String name
+   - int age
+   - section(char type)
+   - gender (char type)
+   - three int subject marks (subject1, subject2, subject3)
+
+(1) Calcuate the total marks and percentage obtained by every student (total= subject 1 + subject 2+ subject 3) by passing the values from the parameterized constructor
+(2) For s2 and s3 students pass subject 1 marks = 0 and dont pass it in constructor.
+(3) create method display ---> display all the s1, s2, s3 and s4 objects values (all the class variables + total marks + percentage)
+*/
+
+package tutorial;
+
+class Student {
+    String name;
+    int age;
+    char section;
+    char gender;
+    int subject1;
+    int subject2;
+    int subject3;
+    int total;
+    double percentage;
+
+    Student(String name, int age, char section, char gender, int subject1, int subject2, int subject3) {
+        this.name = name;
+        this.age = age;
+        this.section = section;
+        this.gender = gender;
+        this.subject1 = subject1;
+        this.subject2 = subject2;
+        this.subject3 = subject3;
+        calculate();
+    }
+
+    Student(String name, int age, char section, char gender, int subject2, int subject3) {
+        this(name, age, section, gender, 0, subject2, subject3);
+    }
+
+    void calculate() {
+        total = subject1 + subject2 + subject3;
+        percentage = total / 3.0;
+    }
+
+    void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Section: " + section);
+        System.out.println("Gender: " + gender);
+        System.out.println("Subject1: " + subject1);
+        System.out.println("Subject2: " + subject2);
+        System.out.println("Subject3: " + subject3);
+        System.out.println("Total: " + total);
+        System.out.println("Percentage: " + percentage);
+        System.out.println("-----------------------");
+    }
+}
+
+public class Assignment3 {
+    public static void main(String[] args) {
+        Student s1 = new Student("Amit", 20, 'A', 'M', 85, 90, 88);
+        Student s2 = new Student("Riya", 21, 'B', 'F', 78, 82);
+        Student s3 = new Student("Karan", 19, 'A', 'M', 65, 70);
+        Student s4 = new Student("Sneha", 22, 'C', 'F', 92, 87, 95);
+
+        s1.display();
+        s2.display();
+        s3.display();
+        s4.display();
+    }
+}

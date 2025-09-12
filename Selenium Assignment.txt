@@ -1,0 +1,98 @@
+/*
+- Login to Amazon and go to homepage
+- search the pen drive in the search box
+- use filters to select 16 GB pen drive and select any one of the pen drive on the page
+- Click on the product page of the pen drive
+- Go back
+
+2. Search the TV
+3. Click on the BRAND for 'Samsung' checkbox on left side
+4. Click on the BRAND for 'Sony' checkbox on left side
+5. Click on the HDMI port filter checkbox
+6. Click on any product after filteration applied above on home page
+7. Click on radio button (with exchange or without or right side)
+In console of eclipse - 
+- print which checkbox you selected
+- IsSelected is true or not?
+- print which radio button you selected
+- IsSelected for radio is true or not?
+*/
+
+package amdocs.selenium.programs;
+ 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+ 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+ 
+public class AmazonAssignment {
+ 
+	public static void main(String[] args) throws InterruptedException {
+ 
+        WebDriver driver = new ChromeDriver();
+ 
+        driver.manage().window().maximize();
+ 
+        driver.get("https://www.amazon.in/");
+        Thread.sleep(6000);
+        driver.findElement(By.className("a-button-text")).click();
+        Thread.sleep(6000);
+        driver.findElement(By.id("twotabsearchtextbox")).sendKeys("pen drive");
+        Thread.sleep(6000);
+        driver.findElement(By.id("nav-search-submit-button")).click();
+ 
+        Thread.sleep(6000);
+ 
+        driver.findElement(By.xpath("//span[text()='16 GB']")).click();
+        Thread.sleep(6000);
+ 
+        driver.findElement(By.partialLinkText("SanDisk Cruzer Blade")).click();
+        Thread.sleep(6000);
+ 
+        driver.navigate().back();
+        Thread.sleep(6000);
+ 
+        WebElement searchBox2 = driver.findElement(By.id("twotabsearchtextbox"));
+        searchBox2.clear();
+        searchBox2.sendKeys("TV");
+        searchBox2.submit();
+        Thread.sleep(6000);
+ 
+        driver.findElement(By.xpath("//span[text()='Samsung']")).click();
+        WebElement samsungCheckbox = driver.findElement(By.xpath("//span[text()='Samsung']/preceding-sibling::div[1]/*[1]/*[1]"));
+        System.out.println("Selected checkbox: Samsung");
+        System.out.println("Is Samsung checkbox selected? " + samsungCheckbox.isSelected());
+        Thread.sleep(6000);
+ 
+        driver.findElement(By.xpath("//span[text()='Sony']")).click();
+        WebElement sonyCheckbox = driver.findElement(By.xpath("//span[text()='Sony']/preceding-sibling::div[1]/*[1]/*[1]")); 
+        System.out.println("Selected checkbox: Sony");
+        System.out.println("Is Sony checkbox selected? " + sonyCheckbox.isSelected());
+        Thread.sleep(6000);
+ 
+        driver.findElement(By.xpath("//span[contains(text(),'HDMI')]")).click();
+        WebElement hdmiCheckbox = driver.findElement(By.xpath("//span[contains(text(),'HDMI')]/preceding-sibling::div[1]/*[1]/*[1]"));
+        System.out.println("Selected checkbox: HDMI Port");
+        System.out.println("Is HDMI checkbox selected? " + hdmiCheckbox.isSelected());
+        Thread.sleep(6000);
+ 
+        driver.findElement(By.partialLinkText("Samsung 108 cm")).click();
+        Thread.sleep(6000);
+ 
+        Set<String> handles = driver.getWindowHandles();
+        List<String> windowHandles = new ArrayList<>(handles);
+        driver.switchTo().window(windowHandles.get(windowHandles.size() - 1));
+        Thread.sleep(6000);
+        WebElement withExchangeRadio = driver.findElement(By.xpath("//span[text()='With Exchange']/parent::span/parent::div/parent::h5/preceding-sibling::i[1]"));
+        withExchangeRadio.click();
+        Thread.sleep(6000);
+        System.out.println("Is Radio Selected? " + withExchangeRadio.isSelected());
+ 
+        Thread.sleep(6000);
+        driver.quit();
+	}
+}

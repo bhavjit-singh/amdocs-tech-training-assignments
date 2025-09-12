@@ -1,0 +1,97 @@
+/*Use LinkedList only in the below program
+   - Add  6 months (May, June, July, August, April, November)
+   - Add 'December' month as last
+   - Add 'January' month as first
+   - Add 'March' and then add 'Febuary' using the index based 
+   - Add 'September' and then add 'October' using the index based
+
+(1) Print the linkedlist in such a way that proper order of months are displayed
+(2) Get all the even months and print them 
+(3) Get all the odd months and print them
+(4) Use iterator to fetch and print all months 
+(5) Print the first and last month of the year together
+(6) remove your birthday month from the linkedList and print it
+(7) Check whether this linkedList contains any winter month inside it or not?
+(8) Fetch the first and last months using peek()
+(9) Remove the first and last months using poll()*/
+
+package collections.training;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+
+public class assignmentOne {
+	public static void main(String[] args){
+		LinkedList ls = new LinkedList();
+		ls.add("May");
+		ls.add("June");
+		ls.add("July");
+		ls.add("August");
+		ls.add("April");
+		ls.add("November");
+		
+		ls.addLast("December");
+		ls.addFirst("January");
+		
+		ls.add(2, "March");
+		ls.add(1, "Febuary");
+		ls.add(8, "September");
+		ls.add(9, "October");
+		
+		ls.remove("April");
+		ls.add(ls.indexOf("March") + 1, "April");
+		
+		ls.remove("May");
+		ls.add(ls.indexOf("April") + 1, "May");
+		
+		System.out.println("" + ls);
+		
+		Iterator itr = ls.iterator();
+		int index = 0;
+		while(itr.hasNext()){
+			if(index%2 == 0){
+				System.out.print(itr.next() + " ");
+			}else{
+				itr.next();
+			}
+			index += 1;
+		}
+		System.out.println();
+		
+		itr = ls.iterator();
+		index = 0;
+		while(itr.hasNext()){
+			if(index%2 != 0){
+				System.out.print(itr.next() + " ");
+			}else{
+				itr.next();
+			}
+			index += 1;
+		}
+		System.out.println();
+		
+		itr = ls.iterator();
+		while(itr.hasNext()){
+			System.out.print(itr.next() + " ");
+		}
+		System.out.println();
+		
+		System.out.println(ls.peekFirst() + " " + ls.peekLast());
+		System.out.println(ls.remove(11));
+		
+		LinkedList winterMonths = new LinkedList();
+		winterMonths.add("October");
+		winterMonths.add("November");
+		winterMonths.add("December");
+		
+		Iterator winter = winterMonths.iterator();
+		boolean hasWinter = false;
+		while(winter.hasNext()){
+			hasWinter = ls.contains(winter.next()) || hasWinter;
+		}
+		System.out.println(hasWinter);
+		
+		System.out.println(ls.peekFirst() + " " + ls.peekLast());
+		System.out.println(ls.pollFirst() + " " + ls.pollLast());
+	}
+}

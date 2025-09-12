@@ -1,0 +1,28 @@
+package collections.training;
+
+class SalaryException extends Exception {
+	SalaryException(String message){
+		super(message);
+	}
+}
+
+public class assignmentException {
+
+	public static void checkSalary(int salary) throws SalaryException{
+		if(salary < 2100){
+			throw new SalaryException("You need to work hard");
+		} else if(2100 <= salary && salary <= 5000){
+			throw new SalaryException("your salary is somehow good");
+		} else if(5100 <= salary && salary <= 9000){
+			throw new SalaryException("salary is very good");
+		}
+	}
+	
+	public static void main(String[] args) {
+		try{
+			assignmentException.checkSalary(4000);			
+		}catch(Exception e){
+			System.out.println(e);
+		}
+	}
+}

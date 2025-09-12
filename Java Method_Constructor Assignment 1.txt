@@ -1,0 +1,71 @@
+/*
+Create class as "Shape" 
+i want to calculate the area of the different shapes - square, rectangle, circle
+1. create 4 constructors - default contructor + three parameterized constrcutors for the shapes (using constructor overloading)
+2. create 3 methods for (square, rectangle, circle) display which will display the value of the area calculated
+3. calcuate the area of the rhombus and triangle using the method overloading concept 
+*/
+
+package tutorial;
+
+public class Shape {
+    double length, breadth, radius;
+
+    Shape() {
+        System.out.println("Default");
+    }
+
+    Shape(double side) {
+        this.length = side;
+        this.breadth = side;
+    }
+
+    Shape(double length, double breadth) {
+        this.length = length;
+        this.breadth = breadth;
+    }
+
+    Shape(double radius, boolean isCircle) {
+        this.radius = radius;
+    }
+
+    void areaSquare() {
+        double area = length * breadth;
+        System.out.println("Area of Square = " + area);
+    }
+
+    void areaRectangle() {
+        double area = length * breadth;
+        System.out.println("Area of Rectangle = " + area);
+    }
+
+    void areaCircle() {
+        double area = Math.PI * radius * radius;
+        System.out.println("Area of Circle = " + area);
+    }
+
+    double area(double d1, double d2) {
+        return (d1 * d2) / 2;
+    }
+
+    double area(double base, double height, boolean isTriangle) {
+        return (base * height) / 2;
+    }
+
+    public static void main(String[] args) {
+        Shape square = new Shape(5);
+        square.areaSquare();
+
+        Shape rectangle = new Shape(4, 6);
+        rectangle.areaRectangle();
+
+        Shape circle = new Shape(3, true);
+        circle.areaCircle();
+
+        Shape rhombus = new Shape();
+        System.out.println("Area of Rhombus = " + rhombus.area(8, 6));
+
+        Shape triangle = new Shape();
+        System.out.println("Area of Triangle = " + triangle.area(10, 5, true));
+    }
+}
